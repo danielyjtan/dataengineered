@@ -1,0 +1,256 @@
+{
+  "name": "GDELT DOC 2.0 API",
+  "description": "",
+  "base_url": "https://api.gdeltproject.org/api/v2/doc/doc",
+  "url_template": null,
+  "method": "GET",
+  "parameters": [
+    {
+      "name": "query",
+      "location": "query_string",
+      "type": "string",
+      "required": true,
+      "default": null,
+      "description": "Contains the search query. Supports keyword and keyphrase searches, OR statements, and various advanced operators. Must be URL-encoded. Valid operators include: \"\" (exact phrase), (a OR b), -, domain:, domainis:, ImageFaceTone:, ImageNumFaces:, ImageOCRMeta:, ImageTag:, ImageWebCount:, ImageWebTag:, Near:, Repeat:, SourceCountry:, SourceLang:, Theme:, Tone:, ToneAbs. Values must be URL-encoded. Example: %22islamic%20state%22"
+    },
+    {
+      "name": "mode",
+      "location": "query_string",
+      "type": "string",
+      "required": true,
+      "default": null,
+      "description": "Specifies the output mode. Valid values: ArtList, ArtGallery, ImageCollage, ImageCollageInfo, ImageGallery, ImageCollageShare, TimelineVol, TimelineVolRaw, TimelineVolInfo, TimelineTone, TimelineLang, TimelineSourceCountry, ToneChart, WordCloudImageTags, WordCloudImageWebTags"
+    },
+    {
+      "name": "TIMELINESMOOTH",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": null,
+      "description": "Only available in timeline modes. Performs moving window smoothing over the specified number of time steps, up to a maximum of 30. Must be an integer between 1 and 30."
+    },
+    {
+      "name": "maxrecords",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": 75,
+      "description": "Only applies to ArticleList and ImageCollage modes. Specifies the maximum number of records to return. Default is 75. Can be increased up to 250. Must be an integer between 75 and 250."
+    },
+    {
+      "name": "timespan",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "3 months",
+      "description": "Specifies the time span for the search. Default is 3 months. Valid formats: [number]min, [number]h, [number]hours, [number]d, [number]days, [number]w, [number]weeks, [number]m, [number]months. Example: 1week, 3d, 2h"
+    },
+    {
+      "name": "format",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "HTML",
+      "description": "Controls the file format of the results. Valid values: HTML (default), CSV, RSS, RSSArchive, JSON, JSONP, JSONFeed. Note: RSS and RSSArchive are only available in ArticleList mode."
+    },
+    {
+      "name": "sort",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "HybridRel",
+      "description": "Specifies how results should be sorted. Valid values: DateDesc (most recent first), DateAsc (oldest first), ToneDesc (most positive first), ToneAsc (most negative first), HybridRel (default, combines textual relevance and outlet popularity). Note: HybridRel is the default new relevance sorting mode for content published after 2018-09-16 00:01:00."
+    },
+    {
+      "name": "callback",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "callback",
+      "description": "Used for JSONP output. Specifies the name of the callback function. If not present, defaults to 'callback'. Must be a valid JavaScript identifier."
+    },
+    {
+      "name": "STARTDATETIME",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies the precise start date/time in YYYYMMDDHHMMSS format. Only articles published after this date/time will be considered. Must be within the last 3 months. If not specified, the API will search from 3 months ago."
+    },
+    {
+      "name": "ENDDATETIME",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies the precise end date/time in YYYYMMDDHHMMSS format. Only articles published before this date/time will be considered. Must be within the last 3 months. If not specified, the API will search through the present time."
+    },
+    {
+      "name": "TRANS",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Only available in ArticleList mode with HTML output. Embeds a machine translation widget. Value must be 'googtrans' to enable Google Translate Widget."
+    },
+    {
+      "name": "TIMEZOOM",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "no",
+      "description": "Only available for timeline modes in HTML format. Set to 'yes' to enable interactive zooming of the timeline. Set to 'no' or omit to disable. Valid values: 'yes', 'no'."
+    }
+  ],
+  "query_syntax": {
+    "description": "The GDELT DOC 2.0 API supports a complex query language within the 'query' parameter, allowing for boolean logic, field-specific filters, proximity searches, and more.",
+    "operators": [
+      {
+        "name": "Exact Phrase Search",
+        "syntax": "\"donald trump\"",
+        "description": "Searches for the exact phrase",
+        "constraints": "Must be enclosed in quotes"
+      },
+      {
+        "name": "Boolean OR",
+        "syntax": "(clinton OR sanders OR trump)",
+        "description": "Allows searching for multiple terms with OR logic",
+        "constraints": "Cannot be nested"
+      },
+      {
+        "name": "Exclusion",
+        "syntax": "-sourcelang:spanish",
+        "description": "Excludes results matching the specified term",
+        "constraints": "Must be placed at the beginning of the term"
+      },
+      {
+        "name": "Domain",
+        "syntax": "domain:cnn.com",
+        "description": "Returns all coverage from the specified domain",
+        "constraints": "None specified"
+      },
+      {
+        "name": "DomainIs",
+        "syntax": "domainis:un.org",
+        "description": "Returns all coverage from the specified domain with exact match",
+        "constraints": "None specified"
+      },
+      {
+        "name": "ImageFaceTone",
+        "syntax": "imagefacetone<-1.5",
+        "description": "Searches the average 'tone' of human facial emotions in each image",
+        "constraints": "Only available in image modes"
+      },
+      {
+        "name": "ImageNumFaces",
+        "syntax": "imagenumfaces>3",
+        "description": "Searches the total number of foreground human faces in the image",
+        "constraints": "Only available in image modes"
+      },
+      {
+        "name": "ImageOCRMeta",
+        "syntax": "imageocrmeta:\"zika\"",
+        "description": "Searches a combination of OCR results, image metadata, and captions",
+        "constraints": "Must be enclosed in quotes"
+      },
+      {
+        "name": "ImageTag",
+        "syntax": "imagetag:\"safesearchviolence\"",
+        "description": "Searches topical tags assigned by Google's algorithms",
+        "constraints": "Must be enclosed in quotes"
+      },
+      {
+        "name": "ImageWebCount",
+        "syntax": "imagewebcount<10",
+        "description": "Searches for images that have appeared a certain number of times on the web",
+        "constraints": "Only available in image modes"
+      },
+      {
+        "name": "ImageWebTag",
+        "syntax": "imagewebtag:\"drone\"",
+        "description": "Searches for topics used to describe the image across the web",
+        "constraints": "Must be enclosed in quotes"
+      },
+      {
+        "name": "Near",
+        "syntax": "near20:\"trump putin\"",
+        "description": "Specifies that keywords must appear within a given number of words of each other",
+        "constraints": "Phrase matching not supported; only single words allowed"
+      },
+      {
+        "name": "Repeat",
+        "syntax": "repeat3:\"trump\"",
+        "description": "Specifies that a word must appear at least a certain number of times",
+        "constraints": "Only a single word is permitted"
+      },
+      {
+        "name": "SourceCountry",
+        "syntax": "sourcecountry:france",
+        "description": "Searches for articles published in outlets located in a particular country",
+        "constraints": "For countries with spaces in names, use full name without spaces"
+      },
+      {
+        "name": "SourceLang",
+        "syntax": "sourcelang:spanish",
+        "description": "Searches for articles originally published in the given language",
+        "constraints": "Can use 3-character language code"
+      },
+      {
+        "name": "Theme",
+        "syntax": "theme:TERROR",
+        "description": "Searches for GDELT Global Knowledge Graph Themes",
+        "constraints": "None specified"
+      },
+      {
+        "name": "Tone",
+        "syntax": "tone<-5",
+        "description": "Filters for articles above or below a particular tone score",
+        "constraints": "None specified"
+      },
+      {
+        "name": "ToneAbs",
+        "syntax": "toneabs>10",
+        "description": "Filters for high emotion or low emotion articles, regardless of positive/negative",
+        "constraints": "None specified"
+      }
+    ],
+    "filters_in_query": [
+      "domain",
+      "domainis",
+      "sourcecountry",
+      "sourcelang",
+      "theme",
+      "imagewebtag",
+      "imagetag",
+      "imageocrmeta"
+    ],
+    "examples": [
+      {
+        "natural_language": "Show me the volume timeline of coverage mentioning 'islamic state' over the last 3 months",
+        "query_value": "query=\"islamic state\"&mode=timelinevolinfo&TIMELINESMOOTH=5"
+      },
+      {
+        "natural_language": "Show me a collage of images captioned 'donald trump' over the last 3 months",
+        "query_value": "query=imagewebtag:\"donald trump\"&mode=imagecollageinfo&maxrecords=150"
+      },
+      {
+        "natural_language": "Show me the top 100 articles mentioning 'wildlife crime' or 'poaching' published in the last week",
+        "query_value": "query=(\"wildlife crime\" OR poaching OR \"illegal fishing\" OR \"wildlife trade\")&mode=artlist&maxrecords=100&timespan=1week"
+      }
+    ]
+  },
+  "response_format": {
+    "type": "html",
+    "results_key": null,
+    "fields": []
+  },
+  "rate_limits": "Not specified in documentation",
+  "authentication": "none",
+  "quirks_and_warnings": [
+    "Searches a rolling window of the last 3 months of coverage (not just 24 hours)",
+    "Supports searching across 65 languages using English keywords (machine translated)",
+    "Default max results is 75, can be increased to 250 using maxrecords parameter",
+    "Image search modes have specific limitations (e.g., ImageCollageInfo mode provides additional image metadata)",
+    "The API uses machine translation for all non-English content"
+  ]
+}

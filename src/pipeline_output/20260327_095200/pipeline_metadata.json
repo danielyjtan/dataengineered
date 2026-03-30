@@ -1,0 +1,73 @@
+{
+  "query": "Find all threats Trump made to Iran in 2025 and 2026 and give me Iran's economic data",
+  "plan": {
+    "sub_tasks": [
+      {
+        "description": "Find all threats Trump made to Iran in 2025 and 2026",
+        "search_query": "Trump Iran threat",
+        "source_id": "gdelt",
+        "reason": "GDELT tracks global events including threats, with parameters to filter by actor (Trump), target (Iran), and date range (2025-2026).",
+        "source_name": "GDELT",
+        "source_available": true
+      },
+      {
+        "description": "Get Iran's economic data",
+        "search_query": "Iran",
+        "source_id": "world_bank",
+        "reason": "World Bank provides country-level economic indicators (e.g., GDP, trade) via country parameter.",
+        "source_name": "World Bank",
+        "source_available": true
+      }
+    ],
+    "overall_feasibility": "fully_feasible",
+    "user_message": null,
+    "elapsed": 49.56021976470947
+  },
+  "results": [
+    {
+      "task_description": "Find all threats Trump made to Iran in 2025 and 2026",
+      "outcome": {
+        "success": true,
+        "csv_path": "pipeline_output/20260327_095200/task_1_output.csv",
+        "rows": 2,
+        "columns": [
+          "core_content",
+          "threat_date",
+          "threat_type",
+          "medium",
+          "context"
+        ],
+        "pipeline_type": "article_extraction",
+        "message": "Extracted 2 items from 250 articles"
+      }
+    },
+    {
+      "task_description": "Get Iran's economic data",
+      "outcome": {
+        "success": true,
+        "csv_path": "pipeline_output/20260327_095200/task_2_output.csv",
+        "rows": 10,
+        "columns": [
+          "countryiso3code",
+          "date",
+          "value",
+          "unit",
+          "obs_status",
+          "decimal",
+          "indicator_id",
+          "indicator_value",
+          "country_id",
+          "country_value"
+        ],
+        "pipeline_type": "structured_data",
+        "message": "Parsed 10 records directly from API response"
+      }
+    }
+  ],
+  "output_files": [
+    "pipeline_output/20260327_095200/task_1_output.csv",
+    "pipeline_output/20260327_095200/task_2_output.csv"
+  ],
+  "elapsed": 1191.5412690639496,
+  "timestamp": "20260327_095200"
+}

@@ -1,0 +1,141 @@
+{
+  "name": "World Bank Indicators API",
+  "description": "",
+  "base_url": "https://api.worldbank.org/v2/",
+  "url_template": "/country/{country}/indicator/{indicator}",
+  "method": "GET",
+  "parameters": [
+    {
+      "name": "country",
+      "location": "path",
+      "type": "string",
+      "required": true,
+      "default": "all",
+      "description": "Specifies the country code or 'all' for all countries. Valid values include country codes (e.g., 'BR' for Brazil) or 'all' to get data for all countries."
+    },
+    {
+      "name": "indicator",
+      "location": "path",
+      "type": "string",
+      "required": true,
+      "default": null,
+      "description": "Specifies the indicator code (e.g., 'SP.POP.TOTL' for total population). Valid values are the codes of the indicators available in the World Bank database."
+    },
+    {
+      "name": "format",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "json",
+      "description": "Specifies the format of the response. Valid values include 'json' (default), 'xml', 'csv', etc."
+    },
+    {
+      "name": "date",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies the date range for the data. Can be a single year (e.g., '2000'), a range (e.g., '2000:2001'), a month range (e.g., '2012M01:2012M08'), a quarter range (e.g., '2013Q1:2013Q4'), or year-to-date (e.g., 'YTD:2013')."
+    },
+    {
+      "name": "page",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "description": "Specifies the page number for paginated results."
+    },
+    {
+      "name": "per_page",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": 50,
+      "description": "Specifies the number of results per page."
+    },
+    {
+      "name": "mrv",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": null,
+      "description": "Specifies the number of most recent values to fetch."
+    },
+    {
+      "name": "mrnev",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": null,
+      "description": "Specifies the number of most recent non-empty values to fetch."
+    },
+    {
+      "name": "gapfill",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "N",
+      "description": "Specifies whether to fill missing values by backtracking to the next available period. Valid values: 'Y' or 'N'."
+    },
+    {
+      "name": "frequency",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": "Y",
+      "description": "Specifies the frequency of the data. Valid values: 'Q' (quarterly), 'M' (monthly), 'Y' (yearly)."
+    },
+    {
+      "name": "source",
+      "location": "query_string",
+      "type": "integer",
+      "required": false,
+      "default": null,
+      "description": "The source ID to filter indicators from a specific source. Example: '11'."
+    },
+    {
+      "name": "downloadformat",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies the download format. Valid values: 'csv', 'xml', 'excel'."
+    },
+    {
+      "name": "footnote",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies whether to include footnote details. Valid value: 'y' (for yes)."
+    },
+    {
+      "name": "prefix",
+      "location": "query_string",
+      "type": "string",
+      "required": false,
+      "default": null,
+      "description": "Specifies the prefix for JSONP responses. Required when 'format=jsonP' is used."
+    }
+  ],
+  "query_syntax": null,
+  "response_format": {
+    "type": "xml",
+    "results_key": null,
+    "fields": []
+  },
+  "rate_limits": {},
+  "authentication": {
+    "type": "none"
+  },
+  "quirks_and_warnings": [
+    "Version 1 of the API was officially retired in November 2018 and discontinued entirely on June 19, 2020. Accessing older endpoints will return a 'Resource not found' error.",
+    "You cannot currently sort any requests",
+    "A maximum of 60 indicators can be used",
+    "A maximum of 1,500 characters are allowed between two back-slashes (/)",
+    "A maximum of 4,000 characters are allowed in the entire URL",
+    "Translated local language country and region names are not available for all countries",
+    "Uses ISO 2 country codes (e.g., 'br' for Brazil)",
+    "Returns ISO codes when available; otherwise returns WB codes"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "query": "Compare GDP and population data for Brazil, India, and South Africa",
+  "plan": {
+    "sub_tasks": [
+      {
+        "description": "World Bank data (merged 2 indicators)",
+        "source_id": "world_bank",
+        "reason": "The World Bank provides macroeconomic data including GDP by country, which matches the user's request for GDP data.",
+        "source_name": "World Bank",
+        "source_available": true
+      },
+      {
+        "description": "Get population data for Brazil, India, and South Africa",
+        "source_id": "world_bank",
+        "reason": "The World Bank provides macroeconomic data including population by country, which matches the user's request for population data.",
+        "source_name": "World Bank",
+        "source_available": true
+      }
+    ],
+    "overall_feasibility": "fully_feasible",
+    "user_message": null,
+    "elapsed": 45.45572566986084
+  },
+  "results": [
+    {
+      "task_description": "World Bank data (merged 2 indicators)",
+      "outcome": {
+        "success": true,
+        "csv_path": "pipeline_output/20260329_170405/world_bank_merged.csv",
+        "rows": 65,
+        "columns": [
+          "date",
+          "gdp_current_us$",
+          "population_total"
+        ],
+        "pipeline_type": "structured_data",
+        "message": "Merged 2 queries into 65 rows",
+        "merged_from": [
+          "Get GDP data for Brazil, India, and South Africa",
+          "Get population data for Brazil, India, and South Africa"
+        ]
+      }
+    }
+  ],
+  "output_files": [
+    "pipeline_output/20260329_170405/world_bank_merged.csv"
+  ],
+  "elapsed": 275.9587469100952,
+  "timestamp": "20260329_170405"
+}

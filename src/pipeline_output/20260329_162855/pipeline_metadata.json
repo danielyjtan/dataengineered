@@ -1,0 +1,32 @@
+{
+  "query": "What have world leaders said about artificial intelligence regulation in 2025 and 2026",
+  "plan": {
+    "sub_tasks": [
+      {
+        "description": "Find world leader statements on artificial intelligence regulation in 2025 and 2026",
+        "source_id": "gdelt",
+        "reason": "GDELT captures global news events and statements by leaders, including thematic analysis of topics like AI regulation, with time-based filtering for 2025-2026.",
+        "source_name": "GDELT",
+        "source_available": true
+      }
+    ],
+    "overall_feasibility": "fully_feasible",
+    "user_message": null,
+    "elapsed": 40.28878426551819
+  },
+  "results": [
+    {
+      "task_description": "Find world leader statements on artificial intelligence regulation in 2025 and 2026",
+      "outcome": {
+        "success": true,
+        "csv_path": null,
+        "rows": 0,
+        "pipeline_type": "article_extraction",
+        "message": "Pipeline ran but no items were extracted from the articles"
+      }
+    }
+  ],
+  "output_files": [],
+  "elapsed": 907.4104619026184,
+  "timestamp": "20260329_162855"
+}

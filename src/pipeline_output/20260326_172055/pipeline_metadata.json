@@ -1,0 +1,73 @@
+{
+  "query": "Find all threats Trump made to Iran in 2025 and 2026 and give me Iran's economic data",
+  "plan": {
+    "sub_tasks": [
+      {
+        "description": "Find all threats Trump made to Iran in 2025 and 2026",
+        "search_query": "query=Trump Iran threat&timespan=2025-01-01:2026-12-31",
+        "source_id": "gdelt",
+        "reason": "GDELT tracks global events including political threats and mentions of specific figures/countries like Trump and Iran.",
+        "source_name": "GDELT",
+        "source_available": true
+      },
+      {
+        "description": "Get Iran's economic data",
+        "search_query": "country=IRN&indicator=NY.GDP.MKTP.CD,SP.POP.TOTL,NE.TRD.GN.ZS",
+        "source_id": "world_bank",
+        "reason": "World Bank provides country-level economic indicators including GDP, population, and trade statistics for Iran.",
+        "source_name": "World Bank",
+        "source_available": true
+      }
+    ],
+    "overall_feasibility": "fully_feasible",
+    "user_message": null,
+    "elapsed": 88.3290319442749
+  },
+  "results": [
+    {
+      "task_description": "Find all threats Trump made to Iran in 2025 and 2026",
+      "outcome": {
+        "success": true,
+        "csv_path": "pipeline_output/20260326_172055/task_1_output.csv",
+        "rows": 1,
+        "columns": [
+          "threat_statement",
+          "threat_date",
+          "source",
+          "threat_category",
+          "medium"
+        ],
+        "pipeline_type": "article_extraction",
+        "message": "Extracted 1 items from 250 articles"
+      }
+    },
+    {
+      "task_description": "Get Iran's economic data",
+      "outcome": {
+        "success": true,
+        "csv_path": "pipeline_output/20260326_172055/task_2_output.csv",
+        "rows": 10,
+        "columns": [
+          "countryiso3code",
+          "date",
+          "value",
+          "unit",
+          "obs_status",
+          "decimal",
+          "indicator_id",
+          "indicator_value",
+          "country_id",
+          "country_value"
+        ],
+        "pipeline_type": "structured_data",
+        "message": "Parsed 10 records directly from API response"
+      }
+    }
+  ],
+  "output_files": [
+    "pipeline_output/20260326_172055/task_1_output.csv",
+    "pipeline_output/20260326_172055/task_2_output.csv"
+  ],
+  "elapsed": 813.2393300533295,
+  "timestamp": "20260326_172055"
+}

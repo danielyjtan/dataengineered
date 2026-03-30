@@ -1,0 +1,40 @@
+{
+  "id": "gdelt",
+  "name": "GDELT",
+  "description": "The GDELT Project is an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day.",
+  "doc_urls": [
+    "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/"
+  ],
+  "status": "ready",
+  "spec_path": "source_registry/specs/gdelt_spec.json",
+  "validation": {
+    "docs": {
+      "passed": true,
+      "results": [
+        {
+          "url": "https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/",
+          "status": "ok",
+          "char_count": 46519,
+          "error": null
+        }
+      ],
+      "message": "All 1 documentation page(s) accessible"
+    },
+    "spec_generation": {
+      "passed": true,
+      "message": "Spec generated and reviewed",
+      "elapsed": 657.7806060314178
+    },
+    "spec_validation": {
+      "passed": true,
+      "warnings": [],
+      "message": "Spec is valid"
+    },
+    "test_call": {
+      "passed": true,
+      "status_code": 429,
+      "message": "API returned 429 Rate Limited \u2014 API is reachable but rate limited"
+    }
+  },
+  "registered_at": "2026-03-24T11:57:51.871405"
+}

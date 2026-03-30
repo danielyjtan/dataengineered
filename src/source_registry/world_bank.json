@@ -1,0 +1,63 @@
+{
+  "id": "world_bank",
+  "name": "World Bank",
+  "description": "Macroeconomic data by country level",
+  "doc_urls": [
+    "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+    "https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures",
+    "https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries",
+    "https://datahelpdesk.worldbank.org/knowledgebase/articles/898599-indicator-api-queries"
+  ],
+  "status": "ready",
+  "spec_path": "source_registry/specs/world_bank_spec.json",
+  "validation": {
+    "docs": {
+      "passed": true,
+      "results": [
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+          "status": "ok",
+          "char_count": 37594,
+          "error": null
+        },
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures",
+          "status": "ok",
+          "char_count": 43565,
+          "error": null
+        },
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries",
+          "status": "ok",
+          "char_count": 37052,
+          "error": null
+        },
+        {
+          "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/898599-indicator-api-queries",
+          "status": "ok",
+          "char_count": 36640,
+          "error": null
+        }
+      ],
+      "message": "All 4 documentation page(s) accessible"
+    },
+    "spec_generation": {
+      "passed": true,
+      "message": "Spec generated and reviewed",
+      "elapsed": 1746.9999198913574
+    },
+    "spec_validation": {
+      "passed": true,
+      "warnings": [],
+      "message": "Spec is valid"
+    },
+    "test_call": {
+      "passed": true,
+      "status_code": 200,
+      "response_type": "list",
+      "message": "API responded with list data",
+      "test_url": "https://api.worldbank.org/v2/country/BR/indicator/SP.POP.TOTL?format=json"
+    }
+  },
+  "registered_at": "2026-03-29T09:28:57.041911"
+}
